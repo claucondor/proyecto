@@ -67,28 +67,30 @@ $comentarios = obtenerComentarios($conexion, $id_lugar);
         <img src="/proyecto<?php echo $lugarTuristico['ruta_imagen']; ?>" alt="<?php echo $lugarTuristico['nombre']; ?>">
     </section>
 
-    <?php
-    // Verifica si el usuario ha iniciado sesión
-    if (isset($_SESSION['nombre_usuario'])) :
-    ?>
+    <?php if (isset($_SESSION['nombre_usuario'])) : ?>
         <section class="comentarios-section">
             <h3>Comentarios</h3>
 
+            <form action="pages/funciones/agregar_comentario.php" method="post">
+                <input type="hidden" name="id_lugar" value="<?php echo $id_lugar; ?>">
+                <input type="hidden" name="nombre_usuario" value="<?php echo $_SESSION['nombre_usuario']; ?>" readonly>
 
-<form action="agregar_comentario.php" method="post">
-    <input type="hidden" name="id_lugar" value="<?php echo $id_lugar; ?>">
-    <?php
-    // Verifica si el usuario ha iniciado sesión
-    if (isset($_SESSION['nombre_usuario'])) :
-    ?>
-        <input type="hidden" name="nombre_usuario" value="<?php echo $_SESSION['nombre_usuario']; ?>" readonly>
-        <label for="comentario">Comentario:</label>
-        <textarea id="comentario" name="comentario" required></textarea>
-        <button type="submit">Agregar Comentario</button>
-    <?php else : ?>
-        <p>Para dejar un comentario, por favor <a href="login.php">inicia sesión</a>.</p>
-    <?php endif; ?>
-</form>
+                <div class="form-group">
+                    <label for="comentario">Comentario:</label>
+                    <textarea id="comentario" name="comentario" class="form-control" rows="4" required></textarea>
+                </div>
+
+                <!-- Nuevos campos -->
+                <div class="form-group">
+                    <label for="calificacion">Calificación:</label>
+                    <input type="number" id="calificacion" name="calificacion" class="form-control" min="1" max="5" required>
+                </div>
+
+                <!-- Campo oculto para la fecha actual -->
+                <input type="hidden" name="fecha_comentario" value="<?php echo date('Y-m-d'); ?>">
+
+                <button type="submit" class="btn btn-primary">Agregar Comentario</button>
+            </form>
 
             <?php foreach ($comentarios as $comentario) : ?>
                 <div class="comentario">
@@ -102,5 +104,6 @@ $comentarios = obtenerComentarios($conexion, $id_lugar);
         </section>
     <?php endif; ?>
 </main>
+
 
 <?php include('includes/footer.php'); ?>

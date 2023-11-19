@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <title>Iniciar Sesión</title>
+    <title>Registro</title>
     <style>
+        /* Estilos específicos para la página de registro si es necesario */
         body {
             background-color: #f8f9fa;
         }
@@ -57,53 +58,44 @@
     </style>
 </head>
 <body>
-<div id="messages">
-    <?php
-    session_start();
+    <div id="messages">
+        <?php
+        session_start();
 
-    // Mostrar mensaje de éxito
-    if (isset($_SESSION['mensaje'])) {
-        echo '<p style="color: green;">' . $_SESSION['mensaje'] . '</p>';
-        unset($_SESSION['mensaje']);
-    }
+        // Mostrar mensajes de éxito o error
+        if (isset($_SESSION['mensaje'])) {
+            echo '<p style="color: green;">' . $_SESSION['mensaje'] . '</p>';
+            unset($_SESSION['mensaje']);
+        }
 
-    // Mostrar mensaje de error
-    if (isset($_SESSION['error'])) {
-        echo '<p class="error-message">' . $_SESSION['error'] . '</p>';
-        unset($_SESSION['error']);
-    }
-    ?>
+        if (isset($_SESSION['error'])) {
+            echo '<p style="color: red;">' . $_SESSION['error'] . '</p>';
+            unset($_SESSION['error']);
+        }
+        ?>
+    </div>
     <div class="container">
         <div class="card">
             <div class="card-header">
-                <img src="images/logo.jpg" alt="Logo de Tu Aplicación Turística" style="max-width: 100%; height: auto;">
-                <h1>Iniciar Sesión</h1>
+            <img src="images/logo.jpg" alt="Logo de Tu Aplicación Turística" style="max-width: 100%; height: auto;">
+                <h1>Registro</h1>
             </div>
             <div class="card-body">
-                <?php
-                // Mostrar formulario solo si no hay mensaje de error
-                if (!isset($_SESSION['error'])) {
-                    echo '
-                    <form action="pages/funciones/login_handler.php" method="post">
-                        <div class="mb-3">
-                            <label for="nombre_usuario" class="form-label">Nombre de Usuario:</label>
-                            <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="contrasena" class="form-label">Contraseña:</label>
-                            <input type="password" class="form-control" id="contrasena" name="contrasena" required>
-                        </div>
-                        <button type="submit" class="btn btn-login btn-block">Iniciar Sesión</button>
-                    </form>
-                    <p class="text-center mt-3">¿No tienes una cuenta? <a href="registro.php">Regístrate aquí</a>.</p>
+                <form action="pages/funciones/registro_handler.php" method="post">
+                    <div class="mb-3">
+                        <label for="nombre_usuario" class="form-label">Nombre de Usuario:</label>
+                        <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contrasena" class="form-label">Contraseña:</label>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                    </div>
 
-                    ';
-                }
-                ?>
+                    <button type="submit" class="btn btn-login btn-block">Registrarse</button>
+                </form>
             </div>
         </div>
     </div>
-
     <footer class="footer">
         <p>&copy; <?php echo date("Y"); ?> Tu Aplicación Turística. Todos los derechos reservados.</p>
         <p>Desarrollado por Carlos Orlando Patiño Lindarte</p>
