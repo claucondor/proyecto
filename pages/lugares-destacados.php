@@ -36,12 +36,14 @@ function imprimirDestinosDestacados($destinos) {
 
             if ($indiceDestino < $totalDestinos) {
                 echo '<div class="col">';
+                echo '<a href="detalles_lugar.php?id=' . $destinos[$indiceDestino]['id'] . '" class="text-decoration-none">';
                 echo '<div class="card h-100">';
                 echo '<img src="/proyecto' . $destinos[$indiceDestino]['ruta_imagen'] . '" class="card-img-top" alt="' . $destinos[$indiceDestino]['descripcion'] . '">';
                 echo '<div class="card-body">';
                 echo '<p class="card-text">' . $destinos[$indiceDestino]['descripcion'] . '</p>';
                 echo '</div>';
                 echo '</div>';
+                echo '</a>';
                 echo '</div>';
             }
         }
