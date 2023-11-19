@@ -10,7 +10,6 @@
 </section>
 
 <?php
-$conexion = mysqli_connect("localhost", "carlos", "1234", "turismo_colombiano");
 
 if ($conexion) {
     $destinos = obtenerDestinosDestacados($conexion);
