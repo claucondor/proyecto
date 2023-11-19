@@ -1,5 +1,5 @@
 <?php include('includes/header.php'); ?>
-<?php include('pages'); ?>
+<?php include('pages/lugares-destacados.php'); ?>
 
 
 <!-- Contenido específico de la página -->
@@ -9,13 +9,18 @@
     <p>Bienvenido a Tu Aplicación Turística, donde puedes descubrir increíbles destinos turísticos en Colombia.</p>
 </section>
 
-<section class="destacados-section">
-    <h2>Destinos Destacados</h2>
-    <ul>
-        <li>Lugar 1</li>
-        <li>Lugar 2</li>
-    </ul>
-</section>
+<?php
+$conexion = mysqli_connect("localhost", "carlos", "1234", "turismo_colombiano");
+
+if ($conexion) {
+    $destinos = obtenerDestinosDestacados($conexion);
+    imprimirDestinosDestacados($destinos);
+
+    mysqli_close($conexion);
+} else {
+    echo "Error al conectar a la base de datos.";
+}
+?>
 
 <section>
     <h2>Encuentra tu Destino Ideal</h2>
