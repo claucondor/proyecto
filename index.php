@@ -2,7 +2,6 @@
 <?php include('pages/lugares-destacados.php'); ?>
 
 
-<!-- Contenido específico de la página -->
 
 <section>
     <h2>Explora Lugares Turísticos en Colombia</h2>

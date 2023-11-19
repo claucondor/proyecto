@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- Agrega el enlace al archivo CSS de Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <title>Iniciar Sesión</title>
     <style>
@@ -52,7 +51,20 @@
     </style>
 </head>
 <body>
+<div id="messages">
+            <?php
+            // Mostrar mensaje de éxito
+            if (isset($_SESSION['mensaje'])) {
+                echo '<p style="color: green;">' . $_SESSION['mensaje'] . '</p>';
+                unset($_SESSION['mensaje']);
+            }
 
+            // Mostrar mensaje de error
+            if (isset($_SESSION['error'])) {
+                echo '<p style="color: red;">' . $_SESSION['error'] . '</p>';
+                unset($_SESSION['error']);
+            }
+?>
     <div class="container">
         <div class="card">
             <div class="card-header">
@@ -63,13 +75,12 @@
                 <?php
                 session_start();
 
-                // Comprueba si el usuario ya ha iniciado sesión
                 if (isset($_SESSION['nombre_usuario'])) {
                     echo '<p class="text-center">Bienvenido, ' . $_SESSION['nombre_usuario'] . '.</p>';
                     echo '<p class="text-center"><a href="logout.php" class="btn btn-danger">Cerrar sesión</a></p>';
                 } else {
                     echo '
-                    <form action="pages/funciones/login_handler.php" method="post">
+                    <form action=""../funciones/login_handler.php"" method="post">
                         <div class="mb-3">
                             <label for="nombre_usuario" class="form-label">Nombre de Usuario:</label>
                             <input type="text" class="form-control" id="nombre_usuario" name="nombre_usuario" required>
