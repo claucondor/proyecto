@@ -63,7 +63,7 @@
 
     // Mostrar mensaje de éxito
     if (isset($_SESSION['mensaje'])) {
-        echo '<p style="color: green;">' . $_SESSION['mensaje'] . '</p>';
+        echo '<p class="text-center" style="color: green;">' . $_SESSION['mensaje'] . '</p>';
         unset($_SESSION['mensaje']);
     }
 
@@ -81,7 +81,6 @@
             </div>
             <div class="card-body">
                 <?php
-                // Mostrar formulario solo si no hay mensaje de error
                 if (!isset($_SESSION['error'])) {
                     echo '
                     <form action="pages/funciones/login_handler.php" method="post">

@@ -5,7 +5,6 @@ include('pages/funciones/lugares-turisticos-comments.php');
 $id_lugar = $_GET['id'];
 $lugarTuristico = obtenerInformacionLugarTuristico($conexion, $id_lugar);
 
-// Obtén los comentarios del lugar turístico desde la base de datos
 $comentarios = obtenerComentarios($conexion, $id_lugar);
 ?>
 
@@ -80,23 +79,36 @@ $comentarios = obtenerComentarios($conexion, $id_lugar);
                     <textarea id="comentario" name="comentario" class="form-control" rows="4" required></textarea>
                 </div>
 
-                <!-- Nuevos campos -->
                 <div class="form-group">
                     <label for="calificacion">Calificación:</label>
                     <input type="number" id="calificacion" name="calificacion" class="form-control" min="1" max="5" required>
                 </div>
 
-                <!-- Campo oculto para la fecha actual -->
                 <input type="hidden" name="fecha_comentario" value="<?php echo date('Y-m-d'); ?>">
 
                 <button type="submit" class="btn btn-primary">Agregar Comentario</button>
             </form>
 
+
+
             <?php foreach ($comentarios as $comentario) : ?>
-                <div class="comentario">
-                    <p><strong><?php echo $comentario['nombre_usuario']; ?>:</strong> <?php echo $comentario['comentario']; ?></p>
-                </div>
-            <?php endforeach; ?>
+    <div class="comentario">
+        <p>
+            <strong><?php echo $comentario['nombre_usuario']; ?>:</strong>
+            <?php echo $comentario['comentario']; ?>
+            <br>
+            <span class="fecha-calificacion">
+                <?php
+                echo 'Fecha: ' . $comentario['fecha_comentario'] . ' | Calificación: ';
+                // Mostrar estrellas según la calificación
+                for ($i = 1; $i <= 5; $i++) {
+                    echo ($i <= $comentario['calificacion']) ? '★' : '☆';
+                }
+                ?>
+            </span>
+        </p>
+    </div>
+<?php endforeach; ?>
         </section>
     <?php else : ?>
         <section class="comentarios-section">
