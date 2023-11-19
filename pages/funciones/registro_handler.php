@@ -3,7 +3,7 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre_usuario = htmlspecialchars($_POST['nombre_usuario']);
-    $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT); 
+    $contrasena = $_POST['contrasena']; 
 
 
     agregarUsuario($nombre_usuario, $contrasena);
