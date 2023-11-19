@@ -12,7 +12,11 @@ function obtenerInformacionLugarTuristico($conexion, $id) {
 }
 
 function obtenerComentarios($conexion, $id_lugar) {
-    $consulta = "SELECT * FROM comentarios WHERE id_lugar = $id_lugar";
+    $consulta = "SELECT comentarios.*, usuarios.nombre_usuario 
+                 FROM comentarios 
+                 JOIN usuarios ON comentarios.id_usuario = usuarios.id
+                 WHERE id_lugar_destacado = $id_lugar";
+    
     $resultado = mysqli_query($conexion, $consulta);
 
     $comentarios = array();

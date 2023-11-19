@@ -8,7 +8,7 @@
     <title>Tu Aplicación Turística</title>
 </head> 
 <body>
-<?php $conexion = mysqli_connect("localhost", "carlos", "1234", "turismo_colombiano"); ?>
+<?php $conexion = mysqli_connect("localhost", "carlos", "1234", "turismo_colombiano");?>
     <header>
         <img src="images/logo.jpg" alt="Logo de Tu Aplicación Turística" style="display: block; margin: 0 auto;">
         <h1>Aplicación Turística UNAD Colombia</h1>
