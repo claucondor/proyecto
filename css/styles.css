@@ -1,0 +1,42 @@
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    margin-bottom: 5px; 
+}
+main {
+    margin-top: 5px;
+}
+
+
+.destacados-section {
+    text-align: center;
+}
+
+.destacados-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    list-style: none;
+    padding: 0;
+}
+
+.destacado-card {
+    width: 30%;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.destacado-card img {
+    width: 100%;
+    height: auto;
+}
+
+.destacado-card .descripcion {
+    padding: 10px;
+}
